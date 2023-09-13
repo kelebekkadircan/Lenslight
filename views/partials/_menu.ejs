@@ -11,10 +11,10 @@
                 <div class="navbar-area">
                     <nav class="site-navbar">
                         <ul>
-                            <li><a class="active" href="/">Home</a></li>
-                            <li><a href="/about">About</a></li>
+                            <li><a class="<%= link === 'index' && 'active' %>" href="/">Home</a></li>
+                            <li><a class="<%= link === 'about' && 'active' %>" href="/about">About</a></li>
                             <li><a href="/services">Services</a></li>
-                            <li><a href="/gallery">Gallery</a></li>
+                            <li><a class="<%= link === 'photos' && 'active' %>" href="/photos">Gallery</a></li>
                             <li><a href="/projects">Projects</a></li>
                             <li><a href="/blog">Blog</a></li>
                             <li><a href="/contact">Contact</a></li>

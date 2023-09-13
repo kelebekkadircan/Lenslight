@@ -21,7 +21,7 @@ app.set("view engine", "ejs")
 
 // static files middleware
 app.use(express.static('public')) // statik dosyalarımızın publictekiler olduğunu belirtiyor
-
+app.use(express.json())
 //Routes
 
 app.use("/", pageRoute)
