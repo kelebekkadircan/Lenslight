@@ -8,12 +8,7 @@ const createUser = async (req, res) => {
     try {
         const user = await User.create(req.body)
 
-        res.status(201).json({
-            succeded: true,
-            user,
-
-
-        })
+        res.redirect("/login")
 
     } catch (error) {
         res.status(500).json({
@@ -25,6 +20,8 @@ const createUser = async (req, res) => {
 }
 
 const loginUser = async (req, res) => {
+
+
 
 
     try {
@@ -45,10 +42,15 @@ const loginUser = async (req, res) => {
         }
 
         if (same) {
-            res.status(200).json({
-                user,
-                token: createToken(user._id)
+
+            const token = createToken(user._id)
+
+            res.cookie("jwt", token, {
+                httpOnly: true, //frontennden istekte bulunabilicez
+                maxAge: 1000 * 60 * 60 * 24
             })
+
+            res.redirect('/users/dashboard')
 
         }
         else {
@@ -63,7 +65,7 @@ const loginUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             succeded: false,
-            error
+            error: error.stack
         })
     }
 
@@ -77,6 +79,12 @@ const createToken = (userId) => {
     })
 }
 
+const getDashboardPage = (req, res) => {
+    res.render('dashboard', {
+        link: 'dashboard',
+    });
+};
 
 
-export { createUser, loginUser };
+
+export { createUser, loginUser, getDashboardPage };
