@@ -7,6 +7,8 @@ import pageRoute from './routes/pageRoute.js'
 import photoRoute from './routes/photoRoute.js'
 import userRoute from './routes/userRoute.js'
 import { checkUser } from './middlewares/authMiddleware.js'
+// import bodyParser from 'body-parser';
+
 
 dotenv.config();
 
@@ -27,6 +29,7 @@ app.use(express.static('public')) // statik dosyalarımızın publictekiler oldu
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
+// app.use(bodyParser.json())
 
 //Routes
 app.get("*", checkUser)
